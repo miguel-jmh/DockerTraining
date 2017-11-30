@@ -15,7 +15,7 @@ class JSONEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, o)
 
 
-client = MongoClient('mongodb://backend:27017/dockerdemo')
+client = MongoClient('mongodb://backend:27018/dockerdemo')
 db = client.blogpostDB
 
 app = Flask(__name__)
