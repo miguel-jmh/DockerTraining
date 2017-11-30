@@ -83,8 +83,99 @@
           }
         }
       }
+    },
+    "/posts/{post_id}": {
+      "get": {
+        "tags": [
+          "blog post"
+        ],
+        "summary": "Get a blog post",
+        "description": "",
+        "operationId": "getPost",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "post_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "[{'title':title,'post':post, _id:id}]"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "blog post"
+        ],
+        "summary": "Modify a blog post",
+        "description": "",
+        "operationId": "editPost",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "post_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Post object that needs to be added to the Blog",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/blogpostDB"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "blog post"
+        ],
+        "summary": "Delete a blog post",
+        "description": "",
+        "operationId": "deletePost",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "post_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        }
+      }
     }
   },
+  
   "definitions": {
     "blogpostDB": {
       "type": "object",
