@@ -8,32 +8,55 @@
 	{% endblock %}
 </head>
 	<body class="body">
-		<h2>Welcome to your blog</h2>
-		<form class="form-border" action="/add_post" method="POST">
+		{% if edit %}
+			<h2>Editing post...</h2>
+			<form class="form-border" action="/edit_post/{{ post._id }}" method="POST">
+		{% else %}
+			<h2>Welcome to your blog</h2>
+			<form class="form-border" action="/add_post" method="POST">
+		{% endif %}
+		
 			<div class="title wrapper">
-				<input id="input-title" type="text" name="title" placeholder="Title"></input>
+				<input id="input-title" type="text" name="title" placeholder="Title" value="{{ post.title }}"></input>
 			</div>
 
 			<div class="title wrapper">
-				<textarea id="input-post" name="post"></textarea>
+				<textarea id="input-post" name="post">{{ post.post }}</textarea>
 			</div>
 			<div  class="description wrapper">
-				<input type="submit" id="input-submit" value="POST"></input>
+				{% if edit %}
+					<input type="submit" name="submit" id="input-submit" value="DELETE"></input>
+					<input type="submit" name="submit" id="input-submit" value="EDIT"></input>
+				{% else %}
+					<input type="submit" name="submit" id="input-submit" value="POST"></input>
+				{% endif %}
 			</div>
 		</form>
 
-		{% for post in posts %}
-			<div class="blog-border">
-				<div class="title">
-					<div> {{ post.title }} </div>
-				</div>
-				<div class="post">
-					<div> {{ post.post }} </div>
-				</div>
-		  	</div>
-		{% endfor %}
+		{% if posts %}
+			{% for post in posts %}
+				<div class="blog-border">
+					<div class="title">
+						<div> {{ post.title }} </div>
+					</div>
+					<div class="post">
+						<div> {{ post.post }} </div>
+					</div>
+					<div class="links">
+						[ <a href="/blog/{{post._id}}">Edit</a> ]
+					</div>
+			  	</div>
+			{% endfor %}
+		{% endif %}
+
 	
 	</body>
+
+<script>
+function editPost(id) {
+    console.log(id);
+}
+</script>
 
 </html>
 
