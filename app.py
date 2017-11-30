@@ -40,7 +40,7 @@ def add_post():
 
 @app.route('/edit_post/<post_id>', methods=['POST'])
 def edit_post(post_id):
-    if request.form['submit'] == 'POST':
+    if request.form['submit'] == 'EDIT':
         edit(post_id)
     elif request.form['submit'] == 'DELETE':
         delete(post_id)
